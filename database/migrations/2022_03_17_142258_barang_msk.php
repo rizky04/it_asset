@@ -21,6 +21,7 @@ class BarangMsk extends Migration
             $table->integer('jml_brg_masuk')->nullable();
             $table->bigInteger('total')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

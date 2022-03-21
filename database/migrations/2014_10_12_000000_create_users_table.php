@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->enum('level', ['admin', 'gudang', 'pembelian', 'pajak', 'keuangan', 'penjualan', 'hrd', 'sales', 'kasir']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

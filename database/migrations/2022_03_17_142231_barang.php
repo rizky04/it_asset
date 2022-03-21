@@ -20,6 +20,7 @@ class Barang extends Migration
             $table->string('harga')->nullable();
             $table->string('stok')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

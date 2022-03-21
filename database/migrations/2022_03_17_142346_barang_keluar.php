@@ -21,6 +21,7 @@ class BarangKeluar extends Migration
             $table->integer('jml_brg_keluar')->nullable();
             $table->bigInteger('total')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

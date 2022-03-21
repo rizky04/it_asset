@@ -13,7 +13,7 @@ class AuthController extends Controller
 
    public function cek_login(Request $request){
        if(Auth::attempt($request->only('email','password'))){
-           return redirect('home');
+           return redirect('home')->with('success', 'berhasil login');
        }
        return redirect('/');
    }

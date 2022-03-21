@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -40,6 +41,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        User::create([
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password),
+            'level'     => $request->level
+        ]);
+
+        return redirect('/user')->with('success', 'data berhasil disimpan');
     }
 
     /**
@@ -74,6 +83,16 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::find($id);
+
+        $user->name     =   $request->name;
+        $user->email    =   $request->email;
+        $user->password =   Hash::make($request->password);
+        $user->level    =   $request->level;
+
+        $user->save();
+        return redirect('/user')->with('success', 'data berhasil dirubah');
+
     }
 
     /**
@@ -85,5 +104,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::find($id);
+
+        $user->delete();
+
+        return redirect('/user')->with('success', 'data berhasil dihapus');
+
     }
 }
