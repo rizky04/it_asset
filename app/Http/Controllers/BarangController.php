@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -14,6 +16,13 @@ class BarangController extends Controller
     public function index()
     {
         //
+
+        $barang = Barang::join('kategori', 'kategori.id','=','barang.id_kategori')
+                ->select('barang.*', 'kategori.nama_kategori')
+                ->get();
+        $kategori = Kategori::all();
+
+        return view('admin.master.barang.barang', compact('barang', 'kategori'));
     }
 
     /**
@@ -35,6 +44,14 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         //
+        Barang::create([
+            'id_kategori' => $request->id_kategori,
+            'nama_barang' => $request->nama_barang,
+            'harga' => $request->harga,
+            'stok' => $request->stok,
+        ]);
+
+        return redirect('/barang')->with('success', 'data berhasil disimpan');
     }
 
     /**
@@ -69,6 +86,18 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $barang = Barang::find($id);
+
+        $barang->id_kategori = $request->id_kategori;
+        $barang->nama_barang = $request->nama_barang;
+        $barang->harga = $request->harga;
+        $barang->stok = $request->stok;
+
+        $barang->save();
+
+        return redirect('/barang')->with('success','data berhasil diupdate');
+
     }
 
     /**
@@ -80,5 +109,10 @@ class BarangController extends Controller
     public function destroy($id)
     {
         //
+        $barang = Barang::find($id);
+
+        $barang->delete();
+
+        return redirect('/barang')->with('success','barang berhasil dihapus');
     }
 }

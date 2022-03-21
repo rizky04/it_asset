@@ -41,9 +41,17 @@ Route::group(['middleware' => ['auth', 'checkLevel:admin']], function () {
     Route::post('/user/{id}', [UserController::class,'update'])->name('editUser');
     Route::get('/user/{id}', [UserController::class,'destroy'])->name('deleteUser');
 
-
+    //route kategori
     Route::get('/kategori', [KategoriController::class,'index'])->name('kategori');
+    Route::post('kategori', [KategoriController::class,'store'])->name('createKategori');
+    Route::post('/kategori/{id}', [KategoriController::class,'update'])->name('updateKategori');
+    Route::get('/kategori/{id}', [KategoriController::class,'destroy'])->name('deleteKategori');
+
+    //route barang
     Route::get('/barang', [BarangController::class,'index'])->name('barang');
+    Route::post('/barang', [BarangController::class,'store'])->name('createBarang');
+    Route::post('/barang{id}', [BarangController::class,'update'])->name('updateBarang');
+    Route::get('/barang{id}', [BarangController::class,'destroy'])->name('hapusbarang');
 });
 
 

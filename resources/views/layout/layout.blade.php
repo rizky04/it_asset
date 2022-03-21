@@ -155,7 +155,7 @@
 							</div>
 						</li>
 
-						<li class="nav-item active submenu">
+						{{-- <li class="nav-item active submenu">
 							<a data-toggle="collapse" href="#tables">
 								<i class="fas fa-table"></i>
 								<p>Tables</p>
@@ -222,7 +222,7 @@
 									</li>
 								</ul>
 							</div>
-						</li>
+						</li> --}}
 
 					</ul>
 				</div>
@@ -233,7 +233,7 @@
 	<!--   Core JS Files   -->
     @include('sweetalert::alert')
 
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="/assets/js/core/jquery.3.2.1.min.js"></script>
 	<script src="/assets/js/core/popper.min.js"></script>
@@ -293,11 +293,11 @@
 			}
 		});
 	</script>
-<script>
+{{-- <script>
     $('#mySelect2').select2({
         dropdownParent: $('#addUser')
     });
-</script>
+</script> --}}
 
 
 
