@@ -22,7 +22,7 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Barang</a>
+                        <a href="#">Barang Masuk</a>
                     </li>
                 </ul>
             </div>

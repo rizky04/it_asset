@@ -198,7 +198,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="{{ route('barangKeluar') }}">
 											<span class="sub-item">Barang Keluar</span>
 										</a>
 									</li>

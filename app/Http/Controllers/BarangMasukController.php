@@ -16,10 +16,10 @@ class BarangMasukController extends Controller
     public function index()
     {
         //
-        $brg_msk   = BarangMasuk::join('barang', 'barang.id', '=', 'barang_masuk.id_barang')
-                ->join('kategori', 'kategori.id', '=', 'barang.id_kategori')
-                ->select('barang_masuk.*', 'kategori.nama_kategori', 'barang.harga', 'barang.nama_barang')
-                ->get();
+        $brg_msk = BarangMasuk::join('barang', 'barang.id', '=', 'barang_masuk.id_barang')
+                 ->join('kategori', 'kategori.id', '=', 'barang.id_kategori')
+                 ->select('barang_masuk.*', 'kategori.nama_kategori', 'barang.harga', 'barang.nama_barang')
+                 ->get();
         $barang = Barang::all();
 
         return view('gudang.transaksi.barang_masuk.barang_masuk', compact('barang', 'brg_msk'));

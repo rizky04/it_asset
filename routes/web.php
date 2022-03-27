@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
@@ -42,9 +43,14 @@ Route::group(['middleware' => ['auth', 'checkLevel:gudang']], function () {
     Route::get('/barangmasuk/create', [BarangMasukController::class,'create'])->name('addMasuk');
     Route::post('/barangmasuk/store', [BarangMasukController::class,'store'])->name('createMasuk');
 
-    Route::get('/barangkeluar', [BarangMasukController::class,'index'])->name('barangkeluar');
-    Route::post('/barangkeluar', [BarangMasukController::class,'create'])->name('addKeluarMasuk');
-    Route::post('/barangkeluar', [BarangMasukController::class,'store'])->name('createKeluarMasuk');
+
+    Route::get('/barangkeluar', [BarangKeluarController::class,'index'])->name('barangKeluar');
+    Route::get('/barangkeluar/ajax', [BarangKeluarController::class,'ajax'])->name('ajax');
+
+    Route::get('/barangkeluar/create', [BarangKeluarController::class,'create'])->name('addKeluar');
+    Route::post('/barangkeluar/store', [BarangKeluarController::class,'store'])->name('createKeluar');
+
+
 });
 
 Route::group(['middleware' => ['auth', 'checkLevel:admin']], function () {
