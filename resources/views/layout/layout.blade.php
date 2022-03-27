@@ -3,6 +3,7 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>ERP YMS</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 
 	<link rel="icon" href="/assets/img/icon.ico" type="image/x-icon"/>
@@ -127,6 +128,7 @@
 							</span>
 							<h4 class="text-section">Components</h4>
 						</li>
+                        @if(Auth::user()->level == 'admin')
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#base">
 								<i class="fas fa-layer-group"></i>
@@ -154,44 +156,22 @@
 								</ul>
 							</div>
 						</li>
-
-						{{-- <li class="nav-item active submenu">
-							<a data-toggle="collapse" href="#tables">
-								<i class="fas fa-table"></i>
-								<p>Tables</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse show" id="tables">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="../tables/tables.html">
-											<span class="sub-item">Basic Table</span>
-										</a>
-									</li>
-									<li class="active">
-										<a href="../tables/datatables.html">
-											<span class="sub-item">Datatables</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="nav-item">
+                        <li class="nav-item">
 							<a data-toggle="collapse" href="#maps">
 								<i class="fas fa-map-marker-alt"></i>
-								<p>Maps</p>
+								<p>Data Laporan</p>
 								<span class="caret"></span>
 							</a>
 							<div class="collapse" id="maps">
 								<ul class="nav nav-collapse">
 									<li>
 										<a href="../maps/googlemaps.html">
-											<span class="sub-item">Google Maps</span>
+											<span class="sub-item">data user</span>
 										</a>
 									</li>
 									<li>
 										<a href="../maps/fullscreenmaps.html">
-											<span class="sub-item">Full Screen Maps</span>
+											<span class="sub-item">Laporan</span>
 										</a>
 									</li>
 									<li>
@@ -202,7 +182,32 @@
 								</ul>
 							</div>
 						</li>
-						<li class="nav-item">
+                        @endif
+                        @if(Auth::user()->level == 'gudang')
+						<li class="nav-item active submenu">
+							<a data-toggle="collapse" href="#tables">
+								<i class="fas fa-table"></i>
+								<p>Transaksi</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse show" id="tables">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="{{ route('barangMasuk') }}">
+											<span class="sub-item">Barang Masuk</span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="sub-item">Barang Keluar</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+                        @endif
+
+						{{-- <li class="nav-item">
 							<a data-toggle="collapse" href="#charts">
 								<i class="far fa-chart-bar"></i>
 								<p>Charts</p>

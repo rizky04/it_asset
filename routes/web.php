@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Models\BarangMasuk;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +34,18 @@ Route::group(['middleware' => ['auth', 'checkLevel:admin,gudang']], function () 
     Route::get('/home', [HomeController::class,'index'])->name('home');
 });
 
+Route::group(['middleware' => ['auth', 'checkLevel:gudang']], function () {
+    //transaksi barang
+    Route::get('/barangmasuk', [BarangMasukController::class,'index'])->name('barangMasuk');
+    Route::get('/barangmasuk/ajax', [BarangMasukController::class,'ajax'])->name('ajax');
+
+    Route::get('/barangmasuk/create', [BarangMasukController::class,'create'])->name('addMasuk');
+    Route::post('/barangmasuk/store', [BarangMasukController::class,'store'])->name('createMasuk');
+
+    Route::get('/barangkeluar', [BarangMasukController::class,'index'])->name('barangkeluar');
+    Route::post('/barangkeluar', [BarangMasukController::class,'create'])->name('addKeluarMasuk');
+    Route::post('/barangkeluar', [BarangMasukController::class,'store'])->name('createKeluarMasuk');
+});
 
 Route::group(['middleware' => ['auth', 'checkLevel:admin']], function () {
 
