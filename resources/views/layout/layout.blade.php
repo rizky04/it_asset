@@ -157,31 +157,42 @@
 							</div>
 						</li>
                         <li class="nav-item">
-							<a data-toggle="collapse" href="#maps">
-								<i class="fas fa-map-marker-alt"></i>
+							<a data-toggle="collapse" href="#basi">
+								<i class="fas fa-layer-group"></i>
 								<p>Data Laporan</p>
 								<span class="caret"></span>
 							</a>
-							<div class="collapse" id="maps">
+							<div class="collapse" id="basi">
 								<ul class="nav nav-collapse">
-									<li>
-										<a href="../maps/googlemaps.html">
-											<span class="sub-item">data user</span>
-										</a>
-									</li>
-									<li>
-										<a href="../maps/fullscreenmaps.html">
-											<span class="sub-item">Laporan</span>
-										</a>
-									</li>
-									<li>
-										<a href="../maps/jqvmap.html">
-											<span class="sub-item">JQVMap</span>
-										</a>
-									</li>
+                                    <li>
+                                        <a href="{{ route('lap_user') }}">
+                                            <span class="sub-item">data user</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('lap_kategori') }}">
+                                            <span class="sub-item">data kategori</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('lap_barang') }}">
+                                            <span class="sub-item">data barang</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('lap_barang_masuk') }}">
+                                            <span class="sub-item">data barang masuk</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('lap_barang_keluar') }}">
+                                            <span class="sub-item">data barang keluar</span>
+                                        </a>
+                                    </li>
 								</ul>
 							</div>
 						</li>
+
                         @endif
                         @if(Auth::user()->level == 'gudang')
 						<li class="nav-item active submenu">

@@ -52,6 +52,7 @@
                                             <th>nomer barang keluar</th>
                                             <th>barang</th>
                                             <th>kategori</th>
+                                            <th>tgl keluar</th>
                                             <th>harga</th>
                                             <th>jumlah</th>
                                             <th>total</th>
@@ -68,6 +69,7 @@
                                             <td>{{ $bk->no_barang_keluar }}</td>
                                             <td>{{ $bk->nama_barang }}</td>
                                             <td>{{ $bk->nama_kategori }}</td>
+                                            <td>{{ date('d F Y', strtotime($bk->tgl_brg_keluar)) }}</td>
                                             <td>Rp.{{ number_format($bk->harga) }}</td>
                                             <td>{{ $bk->jml_brg_keluar }}</td>
                                             <td>Rp.{{ number_format($bk->total) }}</td>

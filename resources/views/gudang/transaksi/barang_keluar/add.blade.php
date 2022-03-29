@@ -37,9 +37,12 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="">No. Barang Keluar</label>
-                                <input type="text" class="form-control" name="no_barang_keluar" id="no_barang_keluar">
+                                <input type="text" class="form-control" name="no_barang_keluar" value="{{ 'NBK-'.date('d-m-Y').'-'.$kd }}" required readonly>
                             </div>
-
+                            <div class="form-group">
+                                <label for="tgl_brg_keluar">Tgl barang keluar</label>
+                                <input type="date" class="form-control" name="tgl_brg_keluar" id="tgl_brg_keluar">
+                            </div>
                             <input type="hidden" name="id_user" value="{{ Auth::user()->id }}" >
                             <div class="form-group">
                                 <label for="nama_barang">Nama Barang</label>

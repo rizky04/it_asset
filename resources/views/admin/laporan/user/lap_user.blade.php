@@ -22,7 +22,7 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Barang Masuk</a>
+                        <a href="#">User</a>
                     </li>
                 </ul>
             </div>
@@ -36,53 +36,55 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <h4 class="card-title">Add Data</h4>
-                                <a href="{{ route('addMasuk') }}" class="btn btn-primary btn-round ml-auto" >
-                                    <i class="fa fa-plus"></i>
-                                    Add Data
+                                <h4 class="card-title">Print</h4>
+                                <a href="{{ route('cetak_lap_user') }}" target="_blank" class="btn btn-primary btn-round ml-auto" >
+                                    <i class="fa fa-print"></i>
+                                    Print
                                 </a>
                             </div>
                         </div>
                         <div class="card-body">
+
+
                             <div class="table-responsive">
                                 <table id="add-row" class="display table table-striped table-hover">
                                     <thead>
                                         <tr class="text-center">
                                             <th>No</th>
-                                            <th>nomer barang masuk</th>
-                                            <th>barang</th>
-                                            <th>kategori</th>
-                                            <th>tgl masuk</th>
-                                            <th>harga</th>
-                                            <th>jumlah</th>
-                                            <th>total</th>
-                                            {{-- <th style="width: 10%">Action</th> --}}
+                                            <th>Name</th>
+                                            <th>email</th>
+                                            <th>level</th>
+                                            <th style="width: 10%">Action</th>
                                         </tr>
                                     </thead>
+                                    {{-- <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Office</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot> --}}
                                     <tbody>
                                         @php
                                             $no=1;
                                         @endphp
-                                        @foreach ($brg_msk as $bsk )
+                                        @foreach ($user as $u )
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $bsk->no_barang_masuk }}</td>
-                                            <td>{{ $bsk->nama_barang }}</td>
-                                            <td>{{ $bsk->nama_kategori }}</td>
-                                            <td>{{ date('d F Y', strtotime($bsk->tgl_brg_masuk)) }}</td>
-                                            <td>Rp.{{ number_format($bsk->harga) }}</td>
-                                            <td>{{ $bsk->jml_brg_masuk }}</td>
-                                            <td>Rp.{{ number_format($bsk->total) }}</td>
-                                            {{-- <td>
+                                            <td>{{ $u->name }}</td>
+                                            <td>{{ $u->email }}</td>
+                                            <td>{{ $u->level }}</td>
+                                            <td>
                                                 <div class="form-button-action">
-                                                    <button type="button" href="#editData{{ $b->id }}" data-toggle="modal" title="" class="btn btn-link btn-primary btn-lg" data-original-title="edit">
+                                                    <button type="button" href="#modalEditUser{{ $u->id }}" data-toggle="modal" title="" class="btn btn-link btn-primary btn-lg" data-original-title="edit">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
-                                                    <button type="button" href="#deleteData{{ $b->id }}" data-toggle="modal" title="" class="btn btn-link btn-danger" data-original-title="hapus">
+                                                    <button type="button" href="#modalDeleteUser{{ $u->id }}" data-toggle="modal" title="" class="btn btn-link btn-danger" data-original-title="hapus">
                                                         <i class="fa fa-times"></i>
                                                     </button>
                                                 </div>
-                                            </td> --}}
+                                            </td>
 
                                         </tr>
                                         @endforeach
@@ -97,5 +99,6 @@
     </div>
 
 </div>
+
 @endsection
 

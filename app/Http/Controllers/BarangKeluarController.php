@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use App\Models\BarangKeluar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class BarangKeluarController extends Controller
 {
@@ -34,8 +36,22 @@ class BarangKeluarController extends Controller
     {
         //
         $barang = Barang::all();
+        $q = DB::table('barang_keluar')->select(DB::raw('MAX(RIGHT(no_barang_keluar,4)) as kode'));
+        $kd="";
+        if($q->count()>0)
+        {
+            foreach($q->get() as $k)
+            {
+                $tmp = ((int)$k->kode)+1;
+                $kd = sprintf("%04s", $tmp);
+            }
+        }
+        else
+        {
+            $kd = "0001";
+        }
 
-        return view('gudang.transaksi.barang_keluar.add', compact('barang'));
+        return view('gudang.transaksi.barang_keluar.add', compact('barang','kd'));
     }
 
     /**
@@ -57,6 +73,7 @@ class BarangKeluarController extends Controller
                 'no_barang_keluar'  =>  $request->no_barang_keluar,
                 'id_barang'         =>  $request->id_barang,
                 'id_user'           =>  $request->id_user,
+                'tgl_brg_keluar'     =>  $request->tgl_brg_keluar,
                 'jml_brg_keluar'    =>  $request->jml_brg_keluar,
                 'total'             =>  $request->total
             ]);

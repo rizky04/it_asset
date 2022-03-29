@@ -37,13 +37,16 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="">No. Barang Masuk</label>
-                                <input type="text" class="form-control" name="no_barang_masuk" id="no_barang_masuk">
+                                <input type="text" class="form-control" name="no_barang_masuk" value="{{ 'NBM-'.date('d-m-Y').'-'.$kd }}" required readonly>
                             </div>
-
+                            <div class="form-group">
+                                <label for="">tgl masuk</label>
+                                <input type="date" class="form-control" name="tgl_brg_masuk" required>
+                            </div>
                             <input type="hidden" name="id_user" value="{{ Auth::user()->id }}" >
                             <div class="form-group">
                                 <label for="nama_barang">Nama Barang</label>
-                                <select name="id_barang" id="id_barang" class="form-control">
+                                <select name="id_barang" id="id_barang" class="form-control" required>
                                     <option value="">-- Pilih Barang--</option>
                                     @foreach ($barang as $b )
                                     <option value="{{ $b->id }}">{{ $b->nama_barang }}</option>
@@ -66,7 +69,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Rp.</span>
                                     </div>
-                                    <input type="number" class="form-control" id="total" name="total" placeholder="total" required>
+                                    <input type="number" class="form-control" id="total" name="total" placeholder="total" readonly required>
                                 </div>
                             </div>
                         </div>

@@ -22,7 +22,7 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Barang Masuk</a>
+                        <a href="#">Barang keluar</a>
                     </li>
                 </ul>
             </div>
@@ -36,11 +36,11 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <h4 class="card-title">Add Data</h4>
-                                <a href="{{ route('addMasuk') }}" class="btn btn-primary btn-round ml-auto" >
-                                    <i class="fa fa-plus"></i>
-                                    Add Data
-                                </a>
+                                <h4 class="card-title">Print</h4>
+                                <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addData">
+                                    <i class="fa fa-print"></i>
+                                    Print
+                                </button>
                             </div>
                         </div>
                         <div class="card-body">
@@ -49,42 +49,30 @@
                                     <thead>
                                         <tr class="text-center">
                                             <th>No</th>
-                                            <th>nomer barang masuk</th>
+                                            <th>nomer barang keluar</th>
                                             <th>barang</th>
                                             <th>kategori</th>
-                                            <th>tgl masuk</th>
+                                            <th>tgl keluar</th>
                                             <th>harga</th>
                                             <th>jumlah</th>
                                             <th>total</th>
-                                            {{-- <th style="width: 10%">Action</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @php
                                             $no=1;
                                         @endphp
-                                        @foreach ($brg_msk as $bsk )
+                                        @foreach ($brg_klr as $bsk )
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $bsk->no_barang_masuk }}</td>
+                                            <td>{{ $bsk->no_barang_keluar }}</td>
                                             <td>{{ $bsk->nama_barang }}</td>
                                             <td>{{ $bsk->nama_kategori }}</td>
-                                            <td>{{ date('d F Y', strtotime($bsk->tgl_brg_masuk)) }}</td>
+                                            <td>{{ date('d F Y', strtotime($bsk->tgl_brg_keluar)) }}</td>
                                             <td>Rp.{{ number_format($bsk->harga) }}</td>
-                                            <td>{{ $bsk->jml_brg_masuk }}</td>
+                                            <td>{{ $bsk->jml_brg_keluar }}</td>
                                             <td>Rp.{{ number_format($bsk->total) }}</td>
-                                            {{-- <td>
-                                                <div class="form-button-action">
-                                                    <button type="button" href="#editData{{ $b->id }}" data-toggle="modal" title="" class="btn btn-link btn-primary btn-lg" data-original-title="edit">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" href="#deleteData{{ $b->id }}" data-toggle="modal" title="" class="btn btn-link btn-danger" data-original-title="hapus">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </div>
-                                            </td> --}}
-
-                                        </tr>
+                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -95,7 +83,37 @@
             </div>
         </div>
     </div>
+</div>
 
+
+<div class="modal fade" id="addData" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <form action="{{ route('cetak_lap_barang_keluar') }}" method="get" target="_blank">
+                        @csrf
+                        <div class="form-group">
+                            <label for="tgl_awal">tgl awal</label>
+                            <input type="date" class="form-control" name="tgl_awal" placeholder="tanggal awal" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tgl_akhir">tgl akhir</label>
+                            <input type="date" class="form-control" name="tgl_akhir" placeholder="tanggal akhir" required>
+                        </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+        </div>
+    </div>
 </div>
 @endsection
 

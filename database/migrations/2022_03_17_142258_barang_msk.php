@@ -18,6 +18,7 @@ class BarangMsk extends Migration
             $table->string('no_barang_masuk');
             $table->integer('id_barang');
             $table->integer('id_user');
+            $table->date('tgl_brg_masuk');
             $table->integer('jml_brg_masuk')->nullable();
             $table->bigInteger('total')->nullable();
             $table->timestamps();
