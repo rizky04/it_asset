@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang;
-use App\Models\Kategori;
-use App\Models\Merk;
+use App\Models\Lokasi;
 use Illuminate\Http\Request;
 
-class BarangController extends Controller
+class LokasiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,15 +15,9 @@ class BarangController extends Controller
     public function index()
     {
         //
+        $lokasi = Lokasi::all();
 
-        $barang = Barang::join('kategori', 'kategori.id','=','barang.id_kategori')
-                ->join('merk', 'merk.id','=','barang.id_merk')
-                ->select('barang.*', 'kategori.nama_kategori')
-                ->get();
-        $kategori = Kategori::all();
-        $merk = Merk::all();
-
-        return view('admin.master.barang.barang', compact('barang', 'kategori', 'merk'));
+        return view('admin.master.lokasi.lokasi', compact('lokasi'));
     }
 
     /**
@@ -47,14 +39,10 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         //
-        Barang::create([
-            'id_kategori' => $request->id_kategori,
-            'nama_barang' => $request->nama_barang,
-            'harga' => $request->harga,
-            'stok' => $request->stok,
+        Lokasi::create([
+            'nama_lokasi' => $request->nama_lokasi
         ]);
-
-        return redirect('/barang')->with('success', 'data berhasil disimpan');
+        return redirect('/lokasi')->with('success', 'Data berhasil ditambah');
     }
 
     /**
@@ -89,18 +77,11 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $lokasi = Lokasi::find($id);
+        $lokasi->nama_lokasi = $request->nama_lokasi;
 
-        $barang = Barang::find($id);
-
-        $barang->id_kategori = $request->id_kategori;
-        $barang->nama_barang = $request->nama_barang;
-        $barang->harga = $request->harga;
-        $barang->stok = $request->stok;
-
-        $barang->save();
-
-        return redirect('/barang')->with('success','data berhasil diupdate');
-
+        $lokasi->save();
+        return redirect('/lokasi')->with('success', 'data berhasil diupdate');
     }
 
     /**
@@ -112,10 +93,10 @@ class BarangController extends Controller
     public function destroy($id)
     {
         //
-        $barang = Barang::find($id);
+        $lokasi = Lokasi::find($id);
 
-        $barang->delete();
+        $lokasi->delete();
 
-        return redirect('/barang')->with('success','barang berhasil dihapus');
+        return redirect('/lokasi')->with('success', 'data berhasil dihapus');
     }
 }

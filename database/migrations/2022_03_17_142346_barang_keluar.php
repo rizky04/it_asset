@@ -17,7 +17,9 @@ class BarangKeluar extends Migration
             $table->id();
             $table->string('no_barang_keluar');
             $table->integer('id_barang');
+            $table->string('no_asset');
             $table->integer('id_user');
+            $table->integer('id_pegawai');
             $table->date('tgl_brg_keluar');
             $table->integer('jml_brg_keluar')->nullable();
             $table->bigInteger('total')->nullable();

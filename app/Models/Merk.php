@@ -6,20 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class BarangMasuk extends Model
+class Merk extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'barang_masuk';
+    protected $table = 'merk';
     protected $fillable = [
-        'no_barang_masuk',
-        'no_asset',
-        'id_barang',
-        'id_lokasi',
-        'id_user',
-        'tgl_brg_masuk',
-        'jml_brg_masuk',
-        'total',
+        'nama_merk',
+        'created_at',
+        'updated_at'
     ];
     protected $dates = ['deleted_at'];
+
+
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
 }

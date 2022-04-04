@@ -4,10 +4,14 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\BarangMasukController;
+use App\Http\Controllers\DepartemenController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LokasiController;
+use App\Http\Controllers\MerkController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\UserController;
 use App\Models\BarangMasuk;
 use Illuminate\Auth\Events\Login;
@@ -67,6 +71,26 @@ Route::group(['middleware' => ['auth', 'checkLevel:admin']], function () {
     Route::post('kategori', [KategoriController::class,'store'])->name('createKategori');
     Route::post('/kategori/{id}', [KategoriController::class,'update'])->name('updateKategori');
     Route::get('/kategori/{id}', [KategoriController::class,'destroy'])->name('deleteKategori');
+    //route merk
+    Route::get('/merk', [MerkController::class,'index'])->name('merk');
+    Route::post('merk', [MerkController::class,'store'])->name('createMerk');
+    Route::post('/merk/{id}', [MerkController::class,'update'])->name('updateMerk');
+    Route::get('/merk/{id}', [MerkController::class,'destroy'])->name('deleteMerk');
+    //route lokasi
+    Route::get('/lokasi', [LokasiController::class,'index'])->name('lokasi');
+    Route::post('lokasi', [LokasiController::class,'store'])->name('createLokasi');
+    Route::post('/lokasi/{id}', [LokasiController::class,'update'])->name('updateLokasi');
+    Route::get('/lokasi/{id}', [LokasiController::class,'destroy'])->name('deleteLokasi');
+    //route departemen
+    Route::get('/departemen', [DepartemenController::class,'index'])->name('departemen');
+    Route::post('departemen', [DepartemenController::class,'store'])->name('createDepartemen');
+    Route::post('/departemen/{id}', [DepartemenController::class,'update'])->name('updateDepartemen');
+    Route::get('/departemen/{id}', [DepartemenController::class,'destroy'])->name('deleteDepartemen');
+     //route pegawai
+     Route::get('/pegawai', [PegawaiController::class,'index'])->name('pegawai');
+     Route::post('pegawai', [PegawaiController::class,'store'])->name('createPegawai');
+     Route::post('/pegawai/{id}', [PegawaiController::class,'update'])->name('updatePegawai');
+     Route::get('/pegawai/{id}', [PegawaiController::class,'destroy'])->name('deletePegawai');
 
     //route barang
     Route::get('/barang', [BarangController::class,'index'])->name('barang');

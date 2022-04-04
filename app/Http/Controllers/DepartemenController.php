@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang;
-use App\Models\Kategori;
-use App\Models\Merk;
+use App\Models\Departemen;
 use Illuminate\Http\Request;
 
-class BarangController extends Controller
+class DepartemenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,15 +15,9 @@ class BarangController extends Controller
     public function index()
     {
         //
+        $departemen = Departemen::all();
 
-        $barang = Barang::join('kategori', 'kategori.id','=','barang.id_kategori')
-                ->join('merk', 'merk.id','=','barang.id_merk')
-                ->select('barang.*', 'kategori.nama_kategori')
-                ->get();
-        $kategori = Kategori::all();
-        $merk = Merk::all();
-
-        return view('admin.master.barang.barang', compact('barang', 'kategori', 'merk'));
+        return view('admin.master.departemen.departemen',compact('departemen'));
     }
 
     /**
@@ -36,6 +28,7 @@ class BarangController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -47,14 +40,11 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         //
-        Barang::create([
-            'id_kategori' => $request->id_kategori,
-            'nama_barang' => $request->nama_barang,
-            'harga' => $request->harga,
-            'stok' => $request->stok,
-        ]);
 
-        return redirect('/barang')->with('success', 'data berhasil disimpan');
+        Departemen::create([
+            'nama_departemen' => $request->nama_departemen
+        ]);
+        return redirect('/departemen')->with('success', 'Data berhasil di simpan');
     }
 
     /**
@@ -89,18 +79,12 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $departemen = Departemen::find($id);
+        $departemen->nama_departemen = $request->nama_departemen;
 
-        $barang = Barang::find($id);
+        $departemen->save();
 
-        $barang->id_kategori = $request->id_kategori;
-        $barang->nama_barang = $request->nama_barang;
-        $barang->harga = $request->harga;
-        $barang->stok = $request->stok;
-
-        $barang->save();
-
-        return redirect('/barang')->with('success','data berhasil diupdate');
-
+        return redirect('/departemen')->with('success', 'data berhasil di update');
     }
 
     /**
@@ -112,10 +96,10 @@ class BarangController extends Controller
     public function destroy($id)
     {
         //
-        $barang = Barang::find($id);
+        $departemen = Departemen::find($id);
 
-        $barang->delete();
+        $departemen->delete();
 
-        return redirect('/barang')->with('success','barang berhasil dihapus');
+        return redirect('/departemen')->with('success', 'Data berhasil di hapus');
     }
 }

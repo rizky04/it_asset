@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang;
-use App\Models\Kategori;
 use App\Models\Merk;
 use Illuminate\Http\Request;
 
-class BarangController extends Controller
+class MerkController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,15 +15,9 @@ class BarangController extends Controller
     public function index()
     {
         //
-
-        $barang = Barang::join('kategori', 'kategori.id','=','barang.id_kategori')
-                ->join('merk', 'merk.id','=','barang.id_merk')
-                ->select('barang.*', 'kategori.nama_kategori')
-                ->get();
-        $kategori = Kategori::all();
         $merk = Merk::all();
 
-        return view('admin.master.barang.barang', compact('barang', 'kategori', 'merk'));
+        return view('admin.master.merk.merk', compact('merk'));
     }
 
     /**
@@ -46,15 +38,10 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        Barang::create([
-            'id_kategori' => $request->id_kategori,
-            'nama_barang' => $request->nama_barang,
-            'harga' => $request->harga,
-            'stok' => $request->stok,
+        Merk::create([
+            'nama_merk' => $request->nama_merk
         ]);
-
-        return redirect('/barang')->with('success', 'data berhasil disimpan');
+        return redirect('/merk')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -89,18 +76,11 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $merk = Merk::find($id);
+        $merk->nama_merk = $request->nama_merk;
 
-        $barang = Barang::find($id);
-
-        $barang->id_kategori = $request->id_kategori;
-        $barang->nama_barang = $request->nama_barang;
-        $barang->harga = $request->harga;
-        $barang->stok = $request->stok;
-
-        $barang->save();
-
-        return redirect('/barang')->with('success','data berhasil diupdate');
-
+        $merk->save();
+        return redirect('/merk')->with('success', 'data berhasil diupdate');
     }
 
     /**
@@ -111,11 +91,10 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $barang = Barang::find($id);
+        $merk = Merk::find($id);
 
-        $barang->delete();
+        $merk->delete();
 
-        return redirect('/barang')->with('success','barang berhasil dihapus');
+        return redirect('/merk')->with('success', 'data berhasil dihapus');
     }
 }

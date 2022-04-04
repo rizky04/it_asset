@@ -16,8 +16,10 @@ class BarangMsk extends Migration
         Schema::create('barang_masuk', function (Blueprint $table) {
             $table->id();
             $table->string('no_barang_masuk');
+            $table->string('no_asset');
             $table->integer('id_barang');
             $table->integer('id_user');
+            $table->integer('id_lokasi');
             $table->date('tgl_brg_masuk');
             $table->integer('jml_brg_masuk')->nullable();
             $table->bigInteger('total')->nullable();

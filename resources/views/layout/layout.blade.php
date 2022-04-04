@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>ERP YMS</title>
+	<title>ASET IT INTEGRIYA</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 
@@ -26,8 +26,8 @@
 			<!-- Logo Header -->
 			<div class="logo-header">
 
-				<a href="../index.html" class="logo">
-					<img src="/assets/img/logoazzara.svg" alt="navbar brand" class="navbar-brand">
+				<a href="#" class="logo">
+					<img src="/assets/img/logo.jpg" alt="navbar brand" width="45px" height="45px" class="navbar-brand rounded">
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon">
@@ -148,10 +148,31 @@
 										</a>
 									</li>
                                     <li>
+										<a href="{{ route('merk')}}">
+											<span class="sub-item">merk</span>
+										</a>
+									</li>
+                                    <li>
+										<a href="{{ route('lokasi')}}">
+											<span class="sub-item">lokasi</span>
+										</a>
+									</li>
+                                    <li>
+										<a href="{{ route('departemen')}}">
+											<span class="sub-item">departemen</span>
+										</a>
+									</li>
+                                    <li>
+										<a href="{{ route('pegawai')}}">
+											<span class="sub-item">Pegawai</span>
+										</a>
+									</li>
+                                    <li>
 										<a href="{{ route('barang')}}">
 											<span class="sub-item">Barang</span>
 										</a>
 									</li>
+
 
 								</ul>
 							</div>
