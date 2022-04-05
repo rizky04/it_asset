@@ -44,6 +44,10 @@
                                 <label for="tgl_brg_keluar">Tgl barang keluar</label>
                                 <input type="date" class="form-control" name="tgl_brg_keluar" id="tgl_brg_keluar">
                             </div>
+                            <div class="form-group">
+                                <label for="no_asset">no asset</label>
+                                <input type="text" class="form-control" name="no_asset" id="no_asset">
+                            </div>
                             <input type="hidden" name="id_user" value="{{ Auth::user()->id }}" >
                             <div class="form-group">
                                 <label for="nama_barang">Nama Barang</label>
@@ -51,6 +55,33 @@
                                     <option value="">-- Pilih Barang--</option>
                                     @foreach ($barang as $b )
                                     <option value="{{ $b->id }}">{{ $b->nama_barang }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_lokasi">Nama Lokasi</label>
+                                <select name="id_lokasi" id="id_lokasi" class="form-control">
+                                    <option value="">-- Pilih Lokasi--</option>
+                                    @foreach ($lokasi as $bi )
+                                    <option value="{{ $bi->id }}">{{ $bi->nama_lokasi }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_departemen">Nama Departemen</label>
+                                <select name="id_departemen" id="id_departemen" class="form-control">
+                                    <option value="">-- Pilih Departemen--</option>
+                                    @foreach ($departemen as $bi )
+                                    <option value="{{ $bi->id }}">{{ $bi->nama_departemen }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_pegawai">Nama Pegawai</label>
+                                <select name="id_pegawai" id="id_pegawai" class="form-control">
+                                    <option value="">-- Pilih Pegawai--</option>
+                                    @foreach ($pegawai as $bi )
+                                    <option value="{{ $bi->id }}">{{ $bi->nama_pegawai }}</option>
                                     @endforeach
                                 </select>
                             </div>

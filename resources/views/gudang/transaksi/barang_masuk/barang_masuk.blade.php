@@ -51,6 +51,7 @@
                                             <th>No</th>
                                             <th>nomer barang masuk</th>
                                             <th>barang</th>
+                                            <th>no asset</th>
                                             <th>kategori</th>
                                             <th>lokasi</th>
                                             <th>kondisi</th>
@@ -71,6 +72,7 @@
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $bsk->no_barang_masuk }}</td>
                                             <td>{{ $bsk->nama_barang }}</td>
+                                            <td>{{ $bsk->no_asset }}</td>
                                             <td>{{ $bsk->nama_kategori }}</td>
                                             <td>{{ $bsk->nama_lokasi }}</td>
                                             <td>{{ $bsk->kondisi }}</td>

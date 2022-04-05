@@ -41,7 +41,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="">no asset</label>
-                                <input type="text" class="form-control" name="no_asset" value="{{ 'ITY/IT/SBY/'.date('d-m-Y').'/'.$ko }}" required readonly>
+                                <small>ITY/IT/(diisi sby/jkt)/</small>
+                                <input type="text" class="form-control" name="no_asset" value="{{ 'ITY/IT/-/'.date('d-m-Y').'/'.$ko }}">
                             </div>
                             <div class="form-group">
                                 <label for="">tgl masuk</label>

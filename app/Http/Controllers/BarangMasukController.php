@@ -94,10 +94,11 @@ class BarangMasukController extends Controller
             'id_barang'         => $request->id_barang,
             'id_user'           => $request->id_user,
             'id_lokasi'         => $request->id_lokasi,
-            'kodisi'            => $request->kodisi,
+            'kondisi'            => $request->kondisi,
             'tgl_brg_masuk'     => $request->tgl_brg_masuk,
             'jml_brg_masuk'     => $request->jml_brg_masuk,
-            'total'             => $request->total
+            'total'             => $request->total,
+            'keterangan'        => $request->keterangan
         ]);
 
 

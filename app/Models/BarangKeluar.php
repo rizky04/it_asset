@@ -13,7 +13,11 @@ class BarangKeluar extends Model
     protected $fillable = [
         'no_barang_keluar',
         'id_barang',
+        'no_asset',
         'id_user',
+        'id_pegawai',
+        'id_lokasi',
+        'id_departemen',
         'tgl_brg_keluar',
         'jml_brg_keluar',
         'total',

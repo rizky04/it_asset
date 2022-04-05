@@ -50,8 +50,11 @@
                                         <tr class="text-center">
                                             <th>No</th>
                                             <th>nomer barang keluar</th>
+                                            <th>no asset</th>
                                             <th>barang</th>
-                                            <th>kategori</th>
+                                            <th>lokasi</th>
+                                            <th>departemen</th>
+                                            <th>pegawai</th>
                                             <th>tgl keluar</th>
                                             <th>harga</th>
                                             <th>jumlah</th>
@@ -67,8 +70,11 @@
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $bk->no_barang_keluar }}</td>
+                                            <td>{{ $bk->no_asset }}</td>
                                             <td>{{ $bk->nama_barang }}</td>
-                                            <td>{{ $bk->nama_kategori }}</td>
+                                            <td>{{ $bk->nama_lokasi }}</td>
+                                            <td>{{ $bk->nama_departemen }}</td>
+                                            <td>{{ $bk->nama_pegawai }}</td>
                                             <td>{{ date('d F Y', strtotime($bk->tgl_brg_keluar)) }}</td>
                                             <td>Rp.{{ number_format($bk->harga) }}</td>
                                             <td>{{ $bk->jml_brg_keluar }}</td>

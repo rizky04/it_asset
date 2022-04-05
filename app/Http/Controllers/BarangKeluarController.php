@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\BarangKeluar;
+use App\Models\Departemen;
+use App\Models\Lokasi;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,11 +23,18 @@ class BarangKeluarController extends Controller
         //
         $brg_klr = BarangKeluar::join('barang', 'barang.id', '=', 'barang_keluar.id_barang')
                  ->join('kategori', 'kategori.id', '=', 'barang.id_kategori')
-                 ->select('barang_keluar.*', 'kategori.nama_kategori', 'barang.harga', 'barang.nama_barang')
+                 ->join('pegawai', 'pegawai.id', '=', 'barang_keluar.id_pegawai')
+                 ->join('lokasi', 'lokasi.id', '=', 'barang_keluar.id_lokasi')
+                 ->join('departemen', 'departemen.id', '=', 'barang_keluar.id_departemen')
+                 ->select('barang_keluar.*', 'kategori.nama_kategori', 'barang.harga', 'barang.nama_barang', 'pegawai.nama_pegawai', 'lokasi.nama_lokasi', 'departemen.nama_departemen')
                  ->get();
         $barang = Barang::all();
+        $pegawai = Pegawai::all();
+        $departemen = Departemen::all();
+        $lokasi = Lokasi::all();
 
-        return view('gudang.transaksi.barang_keluar.barang_keluar', compact('barang', 'brg_klr'));
+
+        return view('gudang.transaksi.barang_keluar.barang_keluar', compact('barang', 'brg_klr', 'pegawai', 'departemen', 'lokasi'));
     }
 
     /**
@@ -36,6 +46,9 @@ class BarangKeluarController extends Controller
     {
         //
         $barang = Barang::all();
+        $pegawai = Pegawai::all();
+        $departemen = Departemen::all();
+        $lokasi = Lokasi::all();
         $q = DB::table('barang_keluar')->select(DB::raw('MAX(RIGHT(no_barang_keluar,4)) as kode'));
         $kd="";
         if($q->count()>0)
@@ -51,7 +64,7 @@ class BarangKeluarController extends Controller
             $kd = "0001";
         }
 
-        return view('gudang.transaksi.barang_keluar.add', compact('barang','kd'));
+        return view('gudang.transaksi.barang_keluar.add', compact('barang','kd','pegawai', 'departemen', 'lokasi'));
     }
 
     /**
@@ -72,8 +85,12 @@ class BarangKeluarController extends Controller
             BarangKeluar::create([
                 'no_barang_keluar'  =>  $request->no_barang_keluar,
                 'id_barang'         =>  $request->id_barang,
+                'no_asset'          =>  $request->no_asset,
                 'id_user'           =>  $request->id_user,
-                'tgl_brg_keluar'     =>  $request->tgl_brg_keluar,
+                'id_pegawai'        =>  $request->id_pegawai,
+                'id_lokasi'         =>  $request->id_lokasi,
+                'id_departemen'     =>  $request->id_departemen,
+                'tgl_brg_keluar'    =>  $request->tgl_brg_keluar,
                 'jml_brg_keluar'    =>  $request->jml_brg_keluar,
                 'total'             =>  $request->total
             ]);

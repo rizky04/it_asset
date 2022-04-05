@@ -16,10 +16,12 @@ class BarangMasuk extends Model
         'no_asset',
         'id_barang',
         'id_lokasi',
+        'kondisi',
         'id_user',
         'tgl_brg_masuk',
         'jml_brg_masuk',
         'total',
+        'keterangan',
     ];
     protected $dates = ['deleted_at'];
 }
