@@ -20,7 +20,7 @@ class BarangController extends Controller
 
         $barang = Barang::join('kategori', 'kategori.id','=','barang.id_kategori')
                 ->join('merk', 'merk.id','=','barang.id_merk')
-                ->select('barang.*', 'kategori.nama_kategori')
+                ->select('barang.*', 'kategori.nama_kategori','merk.nama_merk')
                 ->get();
         $kategori = Kategori::all();
         $merk = Merk::all();
@@ -49,7 +49,9 @@ class BarangController extends Controller
         //
         Barang::create([
             'id_kategori' => $request->id_kategori,
+            'id_merk' => $request->id_merk,
             'nama_barang' => $request->nama_barang,
+            'spek' => $request->spek,
             'harga' => $request->harga,
             'stok' => $request->stok,
         ]);
@@ -93,7 +95,9 @@ class BarangController extends Controller
         $barang = Barang::find($id);
 
         $barang->id_kategori = $request->id_kategori;
+        $barang->id_merk = $request->id_merk;
         $barang->nama_barang = $request->nama_barang;
+        $barang->spek = $request->spek;
         $barang->harga = $request->harga;
         $barang->stok = $request->stok;
 

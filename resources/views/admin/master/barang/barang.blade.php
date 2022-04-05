@@ -50,7 +50,9 @@
                                         <tr class="text-center">
                                             <th>No</th>
                                             <th>nama barang</th>
-                                            <th>nama kategori</th>
+                                            <th>kategori</th>
+                                            <th>merk</th>
+                                            <th>spek</th>
                                             <th>harga</th>
                                             <th>stok</th>
                                             <th style="width: 10%">Action</th>
@@ -74,6 +76,7 @@
                                             <td>{{ $b->nama_barang }}</td>
                                             <td>{{ $b->nama_kategori }}</td>
                                             <td>{{ $b->nama_merk }}</td>
+                                            <td>{{ $b->spek }}</td>
                                             <td>{{ number_format($b->harga) }}</td>
                                             <td>{{ $b->stok }}</td>
                                             <td>
@@ -123,7 +126,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="id_merk">kategori</label>
+                            <label for="id_merk">merk</label>
                             <select name="id_merk" class="form-control">
                                 @foreach ( $merk as $kik )
                                 <option value="{{ $kik->id }}">{{ $kik->nama_merk }}</option>
@@ -133,6 +136,10 @@
                         <div class="form-group">
                             <label for="nama">Nama Barang</label>
                             <input type="text" class="form-control" name="nama_barang" placeholder="Nama Barang" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nama">spek</label>
+                            <textarea type="text" class="form-control" name="spek" required cols="30" rows="10"></textarea>
                         </div>
                         <div class="form-group">
                             <label>harga</label>
@@ -188,10 +195,24 @@
                         <div class="form-group">
                             <label for="id_kategori">kategori</label>
                             <select name="id_kategori" class="form-control">
+                                <option value="{{ $brg->id_kategori }}">{{ $brg->nama_kategori}}</option>
                                 @foreach ( $kategori as $k )
                                 <option value="{{ $k->id }}">{{ $k->nama_kategori}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_merk">merk</label>
+                            <select name="id_merk" class="form-control">
+                                <option value="{{ $brg->id_merk }}">{{ $brg->nama_merk }}</option>
+                                @foreach ( $merk as $m )
+                                <option value="{{ $m->id }}">{{ $m->nama_merk }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="nama">spek</label>
+                            <textarea type="text" class="form-control" name="spek" required cols="30" rows="10">{{ $brg->spek }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="harga">harga</label>

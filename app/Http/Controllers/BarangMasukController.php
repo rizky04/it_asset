@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\BarangMasuk;
+use App\Models\Lokasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,11 +20,13 @@ class BarangMasukController extends Controller
         //
         $brg_msk = BarangMasuk::join('barang', 'barang.id', '=', 'barang_masuk.id_barang')
                  ->join('kategori', 'kategori.id', '=', 'barang.id_kategori')
-                 ->select('barang_masuk.*', 'kategori.nama_kategori', 'barang.harga', 'barang.nama_barang')
+                 ->join('lokasi', 'lokasi.id', '=', 'barang_masuk.id_lokasi')
+                 ->select('barang_masuk.*', 'kategori.nama_kategori', 'barang.harga', 'barang.nama_barang', 'nama_lokasi')
                  ->get();
         $barang = Barang::all();
+        $lokasi = Lokasi::all();
 
-        return view('gudang.transaksi.barang_masuk.barang_masuk', compact('barang', 'brg_msk'));
+        return view('gudang.transaksi.barang_masuk.barang_masuk', compact('barang', 'brg_msk', 'lokasi'));
     }
 
     /**
@@ -35,6 +38,9 @@ class BarangMasukController extends Controller
     {
         //
         $barang = Barang::all();
+        $lokasi = Lokasi::all();
+
+
 
         $q = DB::table('barang_masuk')->select(DB::raw('MAX(RIGHT(no_barang_masuk,4)) as kode'));
         $kd="";
@@ -51,10 +57,26 @@ class BarangMasukController extends Controller
             $kd = "0001";
         }
 
+
+        $k = DB::table('barang_masuk')->select(DB::raw('MAX(RIGHT(no_asset,4)) as kode'));
+        $ko="";
+        if($k->count()>0)
+        {
+            foreach($k->get() as $o)
+            {
+                $tmp = ((int)$o->kode)+1;
+                $ko = sprintf("%04s", $tmp);
+            }
+        }
+        else
+        {
+            $ko = "0001";
+        }
+
         // return $kd;
 
 
-        return view('gudang.transaksi.barang_masuk.add', compact('barang','kd'));
+        return view('gudang.transaksi.barang_masuk.add', compact('barang','kd', 'ko','lokasi'));
     }
 
     /**
@@ -68,8 +90,11 @@ class BarangMasukController extends Controller
         //
         BarangMasuk::create([
             'no_barang_masuk'   => $request->no_barang_masuk,
+            'no_asset'          => $request->no_asset,
             'id_barang'         => $request->id_barang,
             'id_user'           => $request->id_user,
+            'id_lokasi'         => $request->id_lokasi,
+            'kodisi'            => $request->kodisi,
             'tgl_brg_masuk'     => $request->tgl_brg_masuk,
             'jml_brg_masuk'     => $request->jml_brg_masuk,
             'total'             => $request->total

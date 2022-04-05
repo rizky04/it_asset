@@ -40,18 +40,46 @@
                                 <input type="text" class="form-control" name="no_barang_masuk" value="{{ 'NBM-'.date('d-m-Y').'-'.$kd }}" required readonly>
                             </div>
                             <div class="form-group">
+                                <label for="">no asset</label>
+                                <input type="text" class="form-control" name="no_asset" value="{{ 'ITY/IT/SBY/'.date('d-m-Y').'/'.$ko }}" required readonly>
+                            </div>
+                            <div class="form-group">
                                 <label for="">tgl masuk</label>
                                 <input type="date" class="form-control" name="tgl_brg_masuk" required>
                             </div>
                             <input type="hidden" name="id_user" value="{{ Auth::user()->id }}" >
-                            <div class="form-group">
+                            <div class="form-group mr-4">
                                 <label for="nama_barang">Nama Barang</label>
-                                <select name="id_barang" id="id_barang" class="form-control" required>
+                                <select name="id_barang" id="id_barang" class="form-control js-example-basic-single" required>
                                     <option value="">-- Pilih Barang--</option>
                                     @foreach ($barang as $b )
                                     <option value="{{ $b->id }}">{{ $b->nama_barang }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="form-group mr-4">
+                                <label for="nama_barang">lokasi</label>
+                                <select name="id_lokasi" id="id_lokasi" class="form-control js-example-basic-single" required>
+                                    <option value="">-- Pilih Lokasi--</option>
+                                    @foreach ($lokasi as $l )
+                                    <option value="{{ $l->id }}">{{ $l->nama_lokasi }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="nama_barang">Kondisi</label>
+                                <select name="kondisi" id="kondisi" class="form-control" required>
+                                    <option value="">-- Pilih Kondisi--</option>
+                                    <option value="baru/baik">baru/baik</option>
+                                    <option value="baru/rusak">baru/rusak</option>
+                                    <option value="bekas/baik">bekas/baik</option>
+                                    <option value="bekas/rusak">bekas/rusak</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="keterangan">keterangan</label>
+                                <textarea type="text" class="form-control" name="keterangan" required cols="30" rows="10"></textarea>
                             </div>
                             <div id="detail_barang"></div>
                            <div class="form-group">

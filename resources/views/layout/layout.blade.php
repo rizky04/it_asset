@@ -16,6 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="/assets/css/demo.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
 	<div class="wrapper">
@@ -27,7 +28,7 @@
 			<div class="logo-header">
 
 				<a href="#" class="logo">
-					<img src="/assets/img/logo.jpg" alt="navbar brand" width="45px" height="45px" class="navbar-brand rounded">
+					<img src="/assets/img/Logo-Integriya-22.png" alt="navbar brand" width="160px" height="45px" class="navbar-brand rounded">
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon">
@@ -116,10 +117,10 @@
 					</div>
 					<ul class="nav">
 						<li class="nav-item">
-							<a href="../index.html">
+							<a href="{{ route('home') }}">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
-								<span class="badge badge-count">5</span>
+								{{-- <span class="badge badge-count">5</span> --}}
 							</a>
 						</li>
 						<li class="nav-section">
@@ -286,6 +287,8 @@
 	<script src="/assets/js/plugin/datatables/datatables.min.js"></script>
 	<!-- Azzara JS -->
 	<script src="/assets/js/ready.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 	<!-- Azzara DEMO methods, don't include it in your project! -->
 	<script src="/assets/js/setting-demo.js"></script>
 	<script >
@@ -330,11 +333,11 @@
 			}
 		});
 	</script>
-{{-- <script>
-    $('#mySelect2').select2({
-        dropdownParent: $('#addUser')
-    });
-</script> --}}
+<script>
+   $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+</script>
 
 
 

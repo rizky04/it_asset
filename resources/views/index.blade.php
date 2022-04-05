@@ -25,7 +25,11 @@
 <body class="login">
 	<div class="wrapper wrapper-login">
 		<div class="container container-login animated fadeIn">
-			<h3 class="text-center">erp yms</h3>
+			<h3 class="text-center">
+            <a href="#" class="text-center">
+                <img src="/assets/img/Logo-Integriya-22.png"  width="160px" height="50px">
+            </a>
+        </h3>
             <form method="post" action="{{ route('cek_login')}}">
                 @csrf
                 <div class="login-form">

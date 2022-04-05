@@ -52,6 +52,9 @@
                                             <th>nomer barang masuk</th>
                                             <th>barang</th>
                                             <th>kategori</th>
+                                            <th>lokasi</th>
+                                            <th>kondisi</th>
+                                            <th>keterangan</th>
                                             <th>tgl masuk</th>
                                             <th>harga</th>
                                             <th>jumlah</th>
@@ -69,6 +72,9 @@
                                             <td>{{ $bsk->no_barang_masuk }}</td>
                                             <td>{{ $bsk->nama_barang }}</td>
                                             <td>{{ $bsk->nama_kategori }}</td>
+                                            <td>{{ $bsk->nama_lokasi }}</td>
+                                            <td>{{ $bsk->kondisi }}</td>
+                                            <td>{{ $bsk->keterangan }}</td>
                                             <td>{{ date('d F Y', strtotime($bsk->tgl_brg_masuk)) }}</td>
                                             <td>Rp.{{ number_format($bsk->harga) }}</td>
                                             <td>{{ $bsk->jml_brg_masuk }}</td>
